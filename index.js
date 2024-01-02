@@ -53,7 +53,7 @@ const verifySignature = (data, signature) => {
 
 const server = new AceBaseServer("sovereignShield1", {
   port: port,
-  allowUnauthenticated: true,
+  // allowUnauthenticated: true,
 });
 
 server.ready(() => {
