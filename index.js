@@ -58,5 +58,4 @@ const server = new AceBaseServer("sovereignShield1", {
 
 server.ready(() => {
   console.log("Server is running");
-  // Additional initialization logic here
 });
