@@ -7,7 +7,7 @@ const bsv = require("bsv");
 const wif = process.env.WIF;
 const privateKey = bsv.PrivateKey.fromWIF(wif);
 const publicKey = privateKey.publicKey;
-
+const port = process.env.PORT || 3000;
 const serverId = "0498bb84-df4b-4cf8-a905-683776649c3d";
 
 // Function to hash data using SHA256
@@ -52,7 +52,8 @@ const verifySignature = (data, signature) => {
 };
 
 const server = new AceBaseServer("sovereignShield1", {
-  // Server configuration
+  port: port,
+  allowUnauthenticated: true,
 });
 
 server.ready(() => {
