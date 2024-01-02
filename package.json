@@ -8,5 +8,11 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "acebase-server": "^1.18.2",
+    "bsv": "1.5",
+    "dotenv": "^16.3.1",
+    "uuid": "^9.0.1"
+  }
 }
