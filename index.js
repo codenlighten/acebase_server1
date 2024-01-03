@@ -2,6 +2,9 @@ require("dotenv").config();
 const { v4: uuidv4 } = require("uuid");
 const { AceBaseServer } = require("acebase-server");
 const bsv = require("bsv");
+const https = require("https");
+const fs = require("fs");
+const cors = require("cors");
 
 // Load private key from environment variable
 const wif = process.env.WIF;
@@ -51,11 +54,26 @@ const verifySignature = (data, signature) => {
   }
 };
 
+// AceBase server configuration
 const server = new AceBaseServer("sovereignShield1", {
   port: port,
-  // allowUnauthenticated: true,
+  // Additional configurations here
+});
+
+// Apply CORS middleware
+server.app.use(cors());
+
+// HTTPS configuration
+const httpsOptions = {
+  key: fs.readFileSync("key.pem"),
+  cert: fs.readFileSync("cert.pem"),
+};
+
+// Start HTTPS server with AceBase
+https.createServer(httpsOptions, server.app).listen(port, () => {
+  console.log(`HTTPS Server running on port ${port}`);
 });
 
 server.ready(() => {
-  console.log("Server is running");
+  console.log("AceBase Server is running");
 });
